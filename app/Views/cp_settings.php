@@ -86,7 +86,7 @@
 	<textarea class="form-control" name="compWorkingHrs" rows="3"><?php echo $compWorkingHrs; ?></textarea>
   </div></br>
 
-  <div class="form-group">
+  <div class="form-team">
     <label for="who_r_we" style="width: 97%;">About us</label><i class="fa fa-info-circle font-i" >
       <div class="font-i-text">Background's image's height depends on number of lines</div>
             </i>
