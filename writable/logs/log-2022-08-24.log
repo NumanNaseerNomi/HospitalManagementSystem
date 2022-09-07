@@ -1,0 +1,115 @@
+CRITICAL - 2022-08-24 14:08:21 --> Undefined array key "conflict"
+in APPPATH\Views\default_dt.php on line 78.
+ 1 APPPATH\Views\default_dt.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "conflict"', 'APPPATH\\Views\\default_dt.php', 78)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\default_dt.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('default_dt', [], true)
+ 5 APPPATH\Controllers\Home.php(723): view('default_dt')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 14:23:52 --> Array callback must have exactly two elements
+in APPPATH\Controllers\Home.php on line 679.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 14:25:58 --> Array callback must have exactly two elements
+in APPPATH\Controllers\Home.php on line 679.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 14:26:57 --> Undefined array key "t11"
+in APPPATH\Controllers\Home.php on line 679.
+ 1 APPPATH\Controllers\Home.php(679): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "t11"', 'APPPATH\\Controllers\\Home.php', 679)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 14:29:58 --> Undefined variable $counters
+in APPPATH\Controllers\Home.php on line 673.
+ 1 APPPATH\Controllers\Home.php(673): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $counters', 'APPPATH\\Controllers\\Home.php', 673)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 14:36:42 --> Undefined array key "conflict"
+in APPPATH\Views\default_dt.php on line 78.
+ 1 APPPATH\Views\default_dt.php(78): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "conflict"', 'APPPATH\\Views\\default_dt.php', 78)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\default_dt.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('default_dt', [], true)
+ 5 APPPATH\Controllers\Home.php(728): view('default_dt')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 14:39:32 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\main_page.php on line 40.
+ 1 APPPATH\Views\main_page.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\main_page.php', 40)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\main_page.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('main_page', [], true)
+ 5 APPPATH\Controllers\Home.php(461): view('main_page')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->main_page()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 14:42:32 --> Undefined constant "App\Controllers\counter"
+in APPPATH\Controllers\Home.php on line 682.
+ 1 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 2 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 15:56:51 --> Undefined array key "f11"
+in APPPATH\Controllers\Home.php on line 689.
+ 1 APPPATH\Controllers\Home.php(689): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "f11"', 'APPPATH\\Controllers\\Home.php', 689)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 16:00:27 --> Undefined array key "f11"
+in APPPATH\Controllers\Home.php on line 690.
+ 1 APPPATH\Controllers\Home.php(690): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "f11"', 'APPPATH\\Controllers\\Home.php', 690)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 16:34:08 --> Undefined variable $tempFrom
+in APPPATH\Controllers\Home.php on line 673.
+ 1 APPPATH\Controllers\Home.php(673): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tempFrom', 'APPPATH\\Controllers\\Home.php', 673)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 16:34:24 --> Undefined array key "f11"
+in APPPATH\Controllers\Home.php on line 695.
+ 1 APPPATH\Controllers\Home.php(695): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "f11"', 'APPPATH\\Controllers\\Home.php', 695)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->default_dt()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 23:45:14 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\main_page.php on line 40.
+ 1 APPPATH\Views\main_page.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\main_page.php', 40)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\main_page.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('main_page', [], true)
+ 5 APPPATH\Controllers\Home.php(461): view('main_page')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->main_page()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-24 23:46:51 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\services.php on line 44.
+ 1 APPPATH\Views\services.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\services.php', 44)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\services.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('services', [], true)
+ 5 APPPATH\Controllers\Home.php(629): view('services')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->services()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

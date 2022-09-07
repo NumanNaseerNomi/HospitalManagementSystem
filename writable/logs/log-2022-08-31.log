@@ -1,0 +1,88 @@
+CRITICAL - 2022-08-31 06:08:29 --> App\Models\CompColorsModel::__construct(): Argument #1 ($db) must be of type CodeIgniter\Database\ConnectionInterface, null given, called in C:\XAMPP\htdocs\project-root\app\Controllers\Home.php on line 2172
+in APPPATH\Models\CompColorsModel.php on line 13.
+ 1 APPPATH\Controllers\Home.php(2172): App\Models\CompColorsModel->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-31 06:14:09 --> Unknown column 'hex_color' in 'field list'
+CRITICAL - 2022-08-31 06:14:09 --> Unknown column 'hex_color' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `compcolors` (`part`, `hex_color`) VALUES (\'header\', \'#fff\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(695): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `compcolors` (`part`, `hex_color`) VALUES (\'header\', \'#fff\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(609): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `compcolors` (`part`, `hex_color`) VALUES (\'header\', \'#fff\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `compcolors` (`part`, `hex_color`) VALUES (:part:, :hex_color:)', [...], false)
+ 5 APPPATH\Models\CompColorsModel.php(44): CodeIgniter\Database\BaseBuilder->insert([...])
+ 6 APPPATH\Controllers\Home.php(2174): App\Models\CompColorsModel->insert_record('header', '#fff')
+ 7 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 8 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 9 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-31 06:39:44 --> Too few arguments to function App\Models\CompColorsModel::update_record(), 1 passed in C:\XAMPP\htdocs\project-root\app\Controllers\Home.php on line 2190 and exactly 4 expected
+in APPPATH\Models\CompColorsModel.php on line 47.
+ 1 APPPATH\Controllers\Home.php(2190): App\Models\CompColorsModel->update_record([...])
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-31 10:38:34 --> Attempt to read property "hex_color" on array
+in APPPATH\Controllers\Home.php on line 2195.
+ 1 APPPATH\Controllers\Home.php(2195): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "hex_color" on array', 'APPPATH\\Controllers\\Home.php', 2195)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-31 10:47:27 --> Attempt to read property "hex_color" on array
+in APPPATH\Controllers\Home.php on line 2195.
+ 1 APPPATH\Controllers\Home.php(2195): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "hex_color" on array', 'APPPATH\\Controllers\\Home.php', 2195)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-31 10:47:35 --> Attempt to read property "hex_color" on array
+in APPPATH\Controllers\Home.php on line 2195.
+ 1 APPPATH\Controllers\Home.php(2195): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "hex_color" on array', 'APPPATH\\Controllers\\Home.php', 2195)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-31 10:47:45 --> Array to string conversion
+in APPPATH\Views\cp_settings.php on line 113.
+ 1 APPPATH\Views\cp_settings.php(113): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Array to string conversion', 'APPPATH\\Views\\cp_settings.php', 113)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\cp_settings.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('cp_settings', [], true)
+ 5 APPPATH\Controllers\Home.php(2776): view('cp_settings', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-31 10:48:33 --> Attempt to read property "hex_color" on array
+in APPPATH\Views\cp_settings.php on line 113.
+ 1 APPPATH\Views\cp_settings.php(113): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "hex_color" on array', 'APPPATH\\Views\\cp_settings.php', 113)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\cp_settings.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('cp_settings', [], true)
+ 5 APPPATH\Controllers\Home.php(2776): view('cp_settings', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-31 11:05:22 --> Undefined variable $existingColors
+in APPPATH\Controllers\Home.php on line 2761.
+ 1 APPPATH\Controllers\Home.php(2761): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $existingColors', 'APPPATH\\Controllers\\Home.php', 2761)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-31 11:06:28 --> Attempt to read property "hex_color" on array
+in APPPATH\Views\cp_settings.php on line 113.
+ 1 APPPATH\Views\cp_settings.php(113): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "hex_color" on array', 'APPPATH\\Views\\cp_settings.php', 113)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\cp_settings.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('cp_settings', [], true)
+ 5 APPPATH\Controllers\Home.php(2773): view('cp_settings', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->cp_settings()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

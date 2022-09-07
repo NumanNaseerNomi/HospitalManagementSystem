@@ -1,0 +1,47 @@
+CRITICAL - 2022-09-02 03:51:08 --> App\Models\CompColorsModel::__construct(): Argument #1 ($db) must be of type CodeIgniter\Database\ConnectionInterface, null given, called in C:\XAMPP\htdocs\project-root\app\Controllers\Home.php on line 1740
+in APPPATH\Models\CompColorsModel.php on line 10.
+ 1 APPPATH\Controllers\Home.php(1740): App\Models\CompColorsModel->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->sign_in('pp')
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-02 03:53:12 --> Only variables should be passed by reference
+in APPPATH\Controllers\Home.php on line 1740.
+ 1 APPPATH\Controllers\Home.php(1740): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Only variables should be passed by reference', 'APPPATH\\Controllers\\Home.php', 1740)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->sign_in('pp')
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-02 04:01:45 --> Undefined variable $ads
+in APPPATH\Views\sign_in.php on line 12.
+ 1 APPPATH\Views\sign_in.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $ads', 'APPPATH\\Views\\sign_in.php', 12)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\sign_in.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('sign_in', [], true)
+ 5 APPPATH\Controllers\Home.php(1745): view('sign_in', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->sign_in('pp')
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-02 04:02:30 --> Undefined variable $ads
+in APPPATH\Views\sign_in.php on line 12.
+ 1 APPPATH\Views\sign_in.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $ads', 'APPPATH\\Views\\sign_in.php', 12)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\sign_in.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('sign_in', [], true)
+ 5 APPPATH\Controllers\Home.php(1745): view('sign_in', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->sign_in('pp')
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-09-02 04:08:10 --> Undefined variable $ads
+in APPPATH\Views\sign_in.php on line 12.
+ 1 APPPATH\Views\sign_in.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $ads', 'APPPATH\\Views\\sign_in.php', 12)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\sign_in.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('sign_in', [], true)
+ 5 APPPATH\Controllers\Home.php(1735): view('sign_in', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->sign_in()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

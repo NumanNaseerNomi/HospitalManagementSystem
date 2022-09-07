@@ -1,0 +1,146 @@
+CRITICAL - 2022-08-26 16:14:33 --> Trying to access array offset on value of type null
+in APPPATH\Controllers\Home.php on line 1667.
+ 1 APPPATH\Controllers\Home.php(1667): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Controllers\\Home.php', 1667)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->org_public_web('Dhahran 1234')
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 16:15:42 --> Trying to access array offset on value of type null
+in APPPATH\Controllers\Home.php on line 1667.
+ 1 APPPATH\Controllers\Home.php(1667): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'APPPATH\\Controllers\\Home.php', 1667)
+ 2 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->org_public_web('Dhahran 1234')
+ 3 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 4 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 16:24:35 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\main_page.php on line 40.
+ 1 APPPATH\Views\main_page.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\main_page.php', 40)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\main_page.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('main_page', [], true)
+ 5 APPPATH\Controllers\Home.php(461): view('main_page')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->main_page()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 16:24:41 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\services.php on line 44.
+ 1 APPPATH\Views\services.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\services.php', 44)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\services.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('services', [], true)
+ 5 APPPATH\Controllers\Home.php(629): view('services')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->services()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 16:24:45 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\services.php on line 44.
+ 1 APPPATH\Views\services.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\services.php', 44)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\services.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('services', [], true)
+ 5 APPPATH\Controllers\Home.php(629): view('services')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->services()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 16:26:06 --> Undefined variable $c_n_f_msg
+in APPPATH\Views\srv_appntmnt.php on line 20.
+ 1 APPPATH\Views\srv_appntmnt.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $c_n_f_msg', 'APPPATH\\Views\\srv_appntmnt.php', 20)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\srv_appntmnt.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('srv_appntmnt', [], true)
+ 5 APPPATH\Controllers\Home.php(1181): view('srv_appntmnt')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->srvs_apnt()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 16:26:50 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\services.php on line 44.
+ 1 APPPATH\Views\services.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\services.php', 44)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\services.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('services', [], true)
+ 5 APPPATH\Controllers\Home.php(629): view('services')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->services()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 16:42:49 --> Undefined variable $c_n_f_msg
+in APPPATH\Views\srv_appntmnt.php on line 20.
+ 1 APPPATH\Views\srv_appntmnt.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $c_n_f_msg', 'APPPATH\\Views\\srv_appntmnt.php', 20)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\srv_appntmnt.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('srv_appntmnt', [], true)
+ 5 APPPATH\Controllers\Home.php(1181): view('srv_appntmnt')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->srvs_apnt()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 22:34:20 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\main_page.php on line 40.
+ 1 APPPATH\Views\main_page.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\main_page.php', 40)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\main_page.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('main_page', [], true)
+ 5 APPPATH\Controllers\Home.php(461): view('main_page')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->main_page()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 22:34:23 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\main_page.php on line 40.
+ 1 APPPATH\Views\main_page.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\main_page.php', 40)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\main_page.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('main_page', [], true)
+ 5 APPPATH\Controllers\Home.php(461): view('main_page')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->main_page()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 22:34:51 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\main_page.php on line 40.
+ 1 APPPATH\Views\main_page.php(40): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\main_page.php', 40)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\main_page.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('main_page', [], true)
+ 5 APPPATH\Controllers\Home.php(461): view('main_page')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->main_page()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 22:35:36 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\services.php on line 44.
+ 1 APPPATH\Views\services.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\services.php', 44)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\services.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('services', [], true)
+ 5 APPPATH\Controllers\Home.php(629): view('services')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->services()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 22:35:41 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\services.php on line 44.
+ 1 APPPATH\Views\services.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\services.php', 44)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\services.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('services', [], true)
+ 5 APPPATH\Controllers\Home.php(629): view('services')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->services()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-26 22:35:44 --> Undefined property: stdClass::$srvArc
+in APPPATH\Views\services.php on line 44.
+ 1 APPPATH\Views\services.php(44): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$srvArc', 'APPPATH\\Views\\services.php', 44)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\services.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('services', [], true)
+ 5 APPPATH\Controllers\Home.php(629): view('services')
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->services()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
