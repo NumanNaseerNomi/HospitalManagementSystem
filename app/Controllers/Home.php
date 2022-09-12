@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-#sdffd
+#sdff
 
 
 use App\Models\GenInfoModel;
