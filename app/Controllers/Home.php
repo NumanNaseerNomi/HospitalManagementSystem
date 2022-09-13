@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-
+#Hi test change
 
 use App\Models\GenInfoModel;
 use App\Models\ComPagesModel;
@@ -27,7 +27,7 @@ use Prophecy\Argument;
 
 //Set the session timeout for 2 seconds
 
-$timeout = 86400;
+$timeout = 86444;
 
 //Set the maxlifetime of the session
 
