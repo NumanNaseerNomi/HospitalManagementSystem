@@ -1,5 +1,5 @@
 <?php
-#check it out 
+
 namespace App\Controllers;
 
 
@@ -16,6 +16,7 @@ use App\Models\CompServiceModel;
 use App\Models\ComRsrvModel;
 use App\Models\ComAttchModel;
 use App\Models\CompWklySrvDdtModel;
+use App\Models\CompColorsModel;
 
 use CodeIgniter\I18n\Time;
 
@@ -153,7 +154,6 @@ class cCalendar {
 	$rsrve_allowed = 0;
         $formated_list = [];
         $existing_list = [];
-	$smart_list = [];
 
 	
 
@@ -395,25 +395,6 @@ class cCalendar {
 				
                             }
                         }
-			
-			$smart_jump = 0; 
-			$smart_list = [];
-			#print_r($formated_list);exit();
-			foreach($formated_list as $f)
-			{
-				if($smart_jump < 2)
-					$smart_list[] = $f;
-				
-
-				$smart_jump = $smart_jump + 1;
-
-				
-				if($smart_jump > 3)
-					$smart_jump = 0;
-					
-
-			}
-			
                         
                     }
 
@@ -1492,6 +1473,10 @@ class Home extends BaseController
     public function default_dt($compId='frabi')
     {
         #session_start();
+
+        $_SESSION['conflict'] = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< by fares 
+
+
         $autoload['helper'] = array('url','html','form','file', 'image');
         if(!isset($_SESSION['logedin']))
             return redirect()->to(base_url('/home/sign_in'));
@@ -1521,25 +1506,72 @@ class Home extends BaseController
             {
                 #$ddt_record_id = $existingDtdt[$_POST['edit_dt']-1]->dfdtId;
                 
-                $counters = 1  ;
-                while($counters <= count($existingDtdt))  
-                {  
-                    $record_id = $existingDtdt[$counters-1]->dfdtId;
 
-                    $adfdtday           = "d".$counters;
-                    $adfdtperiod        = "p".$counters;
-                    $adfdtfrom          = "f".$counters;
-                    $adfdtto            = "t".$counters;
-                    $adfdtduration      = "r".$counters;
-                    $adfdtclosebefore   = "c".$counters;
-                    $adfdtsmartview     = "s".$counters;
-                    $aisActive          = "a".$counters;
-                    
-                    $compDdtModel->update_record($_POST[$adfdtday], $_POST[$adfdtperiod], $_POST[$adfdtfrom], $_POST[$adfdtto], $_POST[$adfdtduration], $_POST[$adfdtclosebefore], $_POST[$adfdtsmartview], $_POST[$aisActive], $record_id);
-                    $counters = $counters + 1;
-                }
-            }
+                //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv by fares
+                $flag = true;
+                $counters = 1;
+                while($counters <= count($existingDtdt))  {
+                    $tempFrom = "f".$counters;
+                    $tempFromTime = substr($_POST[$tempFrom],0,2) . substr($_POST[$tempFrom],3);
 
+                    $tempTo = "t".$counters;
+                    $tempToTime = substr($_POST[$tempTo],0,2) . substr($_POST[$tempTo],3);
+
+
+                    if ($tempFromTime > $tempToTime){
+
+                        $flag = false;
+                        $_SESSION['conflict'] = true;
+                        echo '<style > 
+                        input[name='.$tempTo.'] {border: 1px solid red !important;}
+                        input[name='.$tempFrom.'] {border: 1px solid red !important;}
+                        </style>';
+                    }
+                    $counters++;
+                    if ($counters % 2 == 0){
+                        $tempFrom = "f".$counters;
+                        $tempFromTime = substr($_POST[$tempFrom],0,2) . substr($_POST[$tempFrom],3);
+                        
+                        if ($tempToTime > $tempFromTime){
+                        
+                            $flag = false;
+                            $_SESSION['conflict'] = true;
+                            echo '<style > 
+                            input[name='.$tempTo.'] {border: 1px solid red !important;}
+                            input[name='.$tempFrom.'] {border: 1px solid red !important;}
+                            </style>';
+                        }
+                        
+                        
+                    }
+
+                }    
+                if ($flag){
+                    $_SESSION['conflict'] = false;
+                //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ By fares
+
+
+
+                    $counters = 1  ;
+                    while($counters <= count($existingDtdt))  
+                    {  
+                        $record_id = $existingDtdt[$counters-1]->dfdtId;
+
+                        $adfdtday           = "d".$counters;
+                        $adfdtperiod        = "p".$counters;
+                        $adfdtfrom          = "f".$counters;
+                        $adfdtto            = "t".$counters;
+                        $adfdtduration      = "r".$counters;
+                        $adfdtclosebefore   = "c".$counters;
+                        $adfdtsmartview     = "s".$counters;
+                        $aisActive          = "a".$counters;
+
+                        $compDdtModel->update_record($_POST[$adfdtday], $_POST[$adfdtperiod], $_POST[$adfdtfrom], $_POST[$adfdtto], $_POST[$adfdtduration], $_POST[$adfdtclosebefore], $_POST[$adfdtsmartview], $_POST[$aisActive], $record_id);
+                        $counters = $counters + 1;
+                    }
+            
+                }   
+            }    
             #if(isset($_POST['delete_acc']))
             #{
             #    $acc_record_id = $existingAccs[$_POST['delete_acc']-1]->accId;
@@ -1696,6 +1728,7 @@ class Home extends BaseController
 	$data['type'] = $type;
         $data['isCollapsed'] = "sidebar js-sidebar";
         $data['isCollapsed'] = "sidebar js-sidebar collapsed";
+        
 	if($type=='cp')
 	{
         	echo view ('header', $data);
@@ -1704,6 +1737,12 @@ class Home extends BaseController
 	}
 	else
 	{
+        
+        $db2            = db_connect('frabiedb');
+        $comAdModel     = new ComAdsModel($db2);
+        $existingAds    = $comAdModel->find_whr( $existingData['compId']);
+        $data ['ads']   = $existingAds;
+        $data['colors'] = (new CompColorsModel($db2))->find_whr($existingData['compId']);//<<<<<<<< fares        
 		
 		echo view ('public_header', $data);
         	#echo view ('org_public_view', $data);
@@ -2135,14 +2174,40 @@ class Home extends BaseController
         $comAdModel = new ComAdsModel($db2);
         $comBranchModel = new ComBranchModel($db2);
         $comDprtmntModel = new ComDprtmntModel($db2);
+        $CompColorsModel = new CompColorsModel($db2);//<<<<<<< fares
+
+
         #hash password model 9 @ 39
 
         if($this->request->getMethod() == 'post')
         {
             
-
             $existingData = $genInfoModel->where('compUrlShortName', $compId)->first();
+//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv by fares
 	    
+            if(isset($_POST["change_color"])){
+                $colors = array(
+                    'header' => $_POST['header'],
+                    'footer' => $_POST['footer'],
+                    'font1' => $_POST['font1'],
+                    'font2' => $_POST['font2'],
+                    'buttons' => $_POST['buttons'],
+
+                );
+
+                $CompColorsModel->update_record('1',$colors);
+            }
+
+            if(isset($_POST["default_color"])) $CompColorsModel->set_default();
+
+            
+            // $data['footer'] = $CompColorsModel->find($existingData['compId'], 'footer')->hex_color;
+            // $data['font'] = $CompColorsModel->find($existingData['compId'], 'font')->hex_color;
+            // $data['buttons'] = $CompColorsModel->find($existingData['compId'], 'buttons')->hex_color;
+
+            
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ by fares
+
             if(isset($_POST['save_img_upload']))
             {
                
@@ -2196,7 +2261,7 @@ class Home extends BaseController
                     $page1_image = $this->request->getFile('pagePhoto');
                     if($page1_image->isValid() && !$page1_image->hasMoved())
                     {
-			$rules = [
+			    $rules = [
                     		'pageName' => [
                         		'rules' => 'required|min_length[5]',
                         		'label' => 'page name',
@@ -2213,7 +2278,7 @@ class Home extends BaseController
                             			'min_length' => 'The {field} has to be at least five characters',
 						                        		]
                     		],		    	
-			];
+			    ];
 
 		    	if($this->validate($rules))
                	    	{
@@ -2284,6 +2349,7 @@ class Home extends BaseController
                 if(isset($_POST['save_main_settings']))
                 {
 		   
+                    
 		    		    
     			
                 	$rules = [
@@ -2667,6 +2733,7 @@ class Home extends BaseController
             $existingAds            = $comAdModel->find_whr( $existingData['compId']);
             $existingBranches       = $comBranchModel->find_whr( $existingData['compId']);
             $existingDepartments    = $comDprtmntModel->find_whr( $existingData['compId']);
+            $existingColors = $CompColorsModel->find_whr($existingData['compId']);//<<<<<<<<<<<<< fares
             
             $socialMedia            = ($existingData['compSocialAcc']);
             #print($socialMedia);
@@ -2701,6 +2768,7 @@ class Home extends BaseController
                 'ads'               => $existingAds,
                 'branches'          => $existingBranches,
                 'departments'       => $existingDepartments,
+                'colors'            => $existingColors//<<<<<<<<<<<<<<< fares
 
 
             ];
@@ -2986,7 +3054,7 @@ class Home extends BaseController
                 $aCustResDt = $adatetime->format('Y-m-d H:i:s');
 
                 $comRsrvModel->insert_record($existingData['compId'], $_SESSION['logedinid'], $_POST['PatintName'], $_POST['serv_name'], $aCustResDt, 0);
-		return redirect()->to(base_url('/home/org_public_web/frabi/appointments'));
+		        return redirect()->to(base_url('/home/org_public_web/frabi/appointments'));
 
             }
             
@@ -3127,11 +3195,12 @@ class Home extends BaseController
 
 	
 	$data['exUsrData']   = $exUsrData;
-        $data['isCollapsed'] = "sidebar js-sidebar";        
-        $data['existingRss'] = $existingRss;
-        $data['existingAts'] = $existingAts;
+    $data['isCollapsed'] = "sidebar js-sidebar";        
+    $data['existingRss'] = $existingRss;
+    $data['existingAts'] = $existingAts;
 	$data['th_srv_nm']   = $th_srv_nm;
 	$data['start_at']    = $start_at;
+    $data['colors']      = (new CompColorsModel($db2))->find_whr($existingData['compId']);        
 
         echo view ('public_header', $data);
         echo view ('org_public_view', $data);
