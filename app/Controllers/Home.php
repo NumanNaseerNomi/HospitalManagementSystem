@@ -154,6 +154,7 @@ class cCalendar {
 	$rsrve_allowed = 0;
         $formated_list = [];
         $existing_list = [];
+	$smart_list = [];
 
 	
 
@@ -395,6 +396,25 @@ class cCalendar {
 				
                             }
                         }
+			
+			$smart_jump = 0; 
+			$smart_list = [];
+			#print_r($formated_list);exit();
+			foreach($formated_list as $f)
+			{
+				if($smart_jump < 2)
+					$smart_list[] = $f;
+				
+
+				$smart_jump = $smart_jump + 1;
+
+				
+				if($smart_jump > 3)
+					$smart_jump = 0;
+					
+
+			}
+			
                         
                     }
 
