@@ -530,8 +530,30 @@ else
 								<div class="card-body d-flex">
 									<div class="align-self-center w-100">
 										<div class="chart">
+																					
+										<?php if (isset ($validation)){?>
+
+										<div class="text-danger">
+											<?= $validation->listErrors();?>
+											
+											
+												
 										
-										<form method="post">
+										<?php } 
+										if(count($listErrors) > 0)
+											{
+												print($listErrors[0]);
+											}
+										?> 
+										
+										</div>
+
+										
+
+
+										
+										<form id="rgUsers" name="rgUsers" method="POST" action="" enctype="multipart/form-data" >
+
 
 											
 											
@@ -549,17 +571,36 @@ else
 
 												<div class="form-group"></br>
 												<label for="">Name</label>
-												<input type="text" class="form-control" placeholder="Ahmed" name="acName" value="">
+												<?php if($page_link == 'register') {?>
+													<input type="text" class="form-control" placeholder="Ahmed" name="acName" value="">
+												<?php } else { ?>
+													<input type="text" class="form-control" placeholder="info" name="acName" value="<?php echo $exUsrData->AccName; ?>">
+												<?php } ?>
+
+												
 												</div>
 
 												<div class="form-group"></br>
 												<label for="">Phone</label>
-												<input type="text" class="form-control" placeholder="0541000000" name="acPhone" value="">
+												<?php if($page_link == 'register') {?>
+													<input type="text" class="form-control" placeholder="0541000000" name="acPhone" value="">
+												<?php } else { ?>
+													<input type="text" class="form-control" placeholder="info" name="acPhone" value="<?php echo $exUsrData->AccNumb; ?>">
+												<?php } ?>
+
+
+												
 												</div>
 
 												<div class="form-group"></br>
 												<label for="">Email</label>
-												<input type="text" class="form-control" placeholder="abc@gmail.com" name="acEmail" value="">
+												<?php if($page_link == 'register') {?>
+													<input type="text" class="form-control" placeholder="abc@gmail.com" name="acEmail" value="">
+												<?php } else { ?>
+													<input type="text" class="form-control" placeholder="info@gmail.com" name="acEmail" value="<?php echo $exUsrData->AccEmail; ?>">
+												<?php } ?>
+
+												
 												</div>
 
 												<div class="form-group"></br>
@@ -622,11 +663,11 @@ else
 										<table class="table table-striped">
 										<thead>
 											<tr>
-											<th scope="col" >#</th>
+											<th scope="col" WIDTH="1%">#</th>
 											
-											<th scope="col" >Visitor</th>
-											<th scope="col" >Service</th>
-											<th scope="col" >Date & Time</th>
+											<th scope="col" WIDTH="19%">Visitor</th>
+											<th scope="col" WIDTH="60%">Service</th>
+											<th scope="col" WIDTH="20%">Date & Time</th>
 											
 											<th scope="col" >Actions</th>
 											</tr>
@@ -635,12 +676,22 @@ else
 										<?php 
 										$row_counter = 1;
 										$row_checker = 1;
-										foreach($existingRss as $res) {
-											if($start_at > 0 && $row_checker < $start_at)
-											{
-												$row_checker = $row_checker + 1;
-												continue;
-											}	
+										
+										$new_count_chk = 0;
+										
+										for ($x = count($existingRss)-1; $x > -1 && $new_count_chk < 10; $x--) {
+											$new_count_chk = $new_count_chk + 1;
+  											# echo count($existingRss);
+											
+											$res = (object) $existingRss[$x];
+											
+											#}
+											#foreach($existingRss as $res) {
+											#if($start_at > 0 && $row_checker < $start_at)
+											#{
+											#	$row_checker = $row_checker + 1;
+											#	continue;
+											#}	
 										?>
 											<tr>
 											<th scope="row"><?php echo $row_counter; ?></th>
@@ -707,7 +758,7 @@ else
 											<td colspan="2">
 												<input type="text" class="form-control" name="ratngCmnt<?php echo $row_counter?>" placeholder="" value="<?php echo $res->custResCmnt; ?>">
 											</td> 
-											<td><button type="submit" class="btn btn-primary" name="rate_res" value="<?php echo $titleName;?>" <?php if($res->custResAttended == 0){echo "disabled";}?>>Rate</button></td>
+											<td><button type="submit" class="btn btn-primary" name="rate_res" value="<?php echo $titleName . "." . $res->custResID;?>" <?php if($res->custResAttended == 0){echo "disabled";}?>>Rate</button></td>
 											</tr> <?php } ?>
 										<?php $row_counter =  $row_counter +1;} ?>
 										</tbody>

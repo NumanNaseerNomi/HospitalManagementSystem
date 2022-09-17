@@ -105,6 +105,8 @@
 													<select name="account_type" class="form-control">
 														<option value="1">Admin</option>
 														<option value="2">Receptions</option>
+														<option value="3">Customer</option>
+
 													</select>
 												</div>
 												</div>

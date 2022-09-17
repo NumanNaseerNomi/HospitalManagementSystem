@@ -143,7 +143,7 @@
                <div class="row">
 
                     <div class="col-md-4 col-sm-5">
-                         <p>Welcome to <?php echo $compPublicName; ?></p>
+                         <p><?php echo $compPublicName; ?></p>
                     </div>
                          
                     <div class="col-md-8 col-sm-7 text-align-right">
@@ -154,7 +154,7 @@
 
                          
                          <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> <?php echo $compWorkingHrs; ?></span>
-                         <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="#"><?php echo $compEmail; ?></a></span>
+                         <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="#"><?php echo $compPhoNumb; ?></a></span>
 
 
 		<?php if (isset($_SESSION['logedin']))

@@ -54,24 +54,24 @@
   </div></br>
   <div class="form-group">
     <label for="inputPassword">Whats up number</label>
-    <input type="text" class="form-control" name="compWtzNumb" placeholder="05XXXXXXXX" value="<?php echo $compWtzNumb; ?>">
+    <input type="text" class="form-control" name="compWtzNumb" placeholder="9665XXXXXXX" value="<?php echo $compWtzNumb; ?>">
     
   </div></br>
   
 
 	<div class="form-group">
     <label for="twitter_acc">Twitter</label>
-    <input type="text" class="form-control" name="twitter_acc" placeholder="@twitter" value="<?php echo $twitter_acc; ?>">
+    <input type="text" class="form-control" name="twitter_acc" placeholder="https://mobile.twitter.com/user" value="<?php echo $twitter_acc; ?>">
   </div></br>
 
   <div class="form-group">
     <label for="instgram_acc">Instgram</label>
-    <input type="text" class="form-control" name="instgram_acc" placeholder="@insta" value="<?php echo $instgram_acc; ?>">
+    <input type="text" class="form-control" name="instgram_acc" placeholder="https://instagram.com/user" value="<?php echo $instgram_acc; ?>">
   </div></br>
 
   <div class="form-group">
     <label for="snap_acc">Snap</label>
-    <input type="text" class="form-control" name="snap_acc" placeholder="@snap" value="<?php echo $snap_acc; ?>">
+    <input type="text" class="form-control" name="snap_acc" placeholder="https://www.snapchat.com/add/user" value="<?php echo $snap_acc; ?>">
   </div></br>
 
   

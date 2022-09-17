@@ -1,3 +1,47 @@
+<?php if ($type != 'cp'){ ?>
+<section id="home" class="slider" data-stellar-background-ratio="0.5" >
+          <div class="container">
+               <div class="row">
+
+                         <div class="owl-carousel owl-theme">
+                              
+
+                                   <?php 
+                                   $row_counter = 1;
+                                   $img_name = '';
+                                   
+                                   foreach($ads as $ad) {
+                                   ?>
+					
+                                        <div class="item item-first" style="background-image: url(<?php echo base_url("/uploads/images/manipulated/thumbs/"); echo "/" . $ad->adPhotoName; ?>)" >
+                                             
+                                        </div>
+                                        
+  
+    
+  					
+                                        
+                                        
+
+                                   <?php 
+                                   $row_counter =  $row_counter +1;
+                                   } ?>
+
+                              
+                              
+
+                              
+
+                             
+
+                         </div>
+
+               </div>
+          </div>
+     </section>
+<br><br> 
+<?php } ?>
+
 <main class="d-flex w-100">
 		<div class="container d-flex flex-column">
 			<div class="row vh-100">
@@ -24,7 +68,7 @@
 										</div>
 									<?php endif; ?> 
 
-									<form id="frmUsers" name="frmUsers" method="POST" action="<?php echo $type; ?>" enctype="multipart/form-data" >
+									<form id="frmUsers" name="frmUsers" method="POST"  enctype="multipart/form-data" >
 										<div class="mb-3">
 											<label class="form-label">Phone Number</label>
 											<input class="form-control form-control-lg" type="text" name="phoneNumber" id="phone_number" placeholder="Enter your phone" />

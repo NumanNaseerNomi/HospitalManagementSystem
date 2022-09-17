@@ -179,30 +179,7 @@
 												</div></br>
 												
 
-												<div class="form-group">
-
-												<div class="col-md-6 col-sm-6">
-													<label for="select">Is available</label>
-													<select name="is_avilbl" class="form-control">
-														<?php if(count ($anExistingServs) > 0):?>
-														<?php if($anExistingServs[0]->srvAviStatus == 1):?>
-															<option value="1" selected>Yes</option>
-															<option value="0" >No</option>
-														<?php 
-														endif;
-														if($anExistingServs[0]->srvAviStatus == 0):?>	
-															<option value="1" >Yes</option>
-															<option value="0" selected>No</option>
-														<?php endif;?>
-														<?php endif;?>
-														<?php if(count ($anExistingServs) < 1):?>
-															<option value="1" >Yes</option>
-															<option value="0" >No</option>
-														<?php endif;?>
-													</select>
-												</div>
-												</div>
-												</br>
+												
 
 												
 												<input type="hidden" id="lastResDate" name="lastResDate"

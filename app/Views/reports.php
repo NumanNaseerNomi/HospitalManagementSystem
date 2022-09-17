@@ -41,12 +41,22 @@
 										<?php 
 										$row_counter = 1;
 										$row_checker = 1;
-										foreach($existingRss as $res) {
-											if($start_at > 0 && $row_checker < $start_at)
-											{
-												$row_checker = $row_checker + 1;
-												continue;
-											}	
+
+										$new_count_chk = 0;
+										
+										for ($x = count($existingRss)-1; $x > -1 && $new_count_chk < 10; $x--) {
+											$new_count_chk = $new_count_chk + 1;
+  											# echo count($existingRss);
+											
+											$res = (object) $existingRss[$x];
+
+
+											#foreach($existingRss as $res) {
+											#if($start_at > 0 && $row_checker < $start_at)
+											#{
+											#	$row_checker = $row_checker + 1;
+											#	continue;
+											#}	
 										?>
 											<tr>
 											<th scope="row"><?php echo $row_counter; ?></th>
