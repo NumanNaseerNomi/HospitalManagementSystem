@@ -494,7 +494,7 @@ class Home extends BaseController
             {
 
                 $db2                = db_connect('frabiedb');
-		$comRsrvModel       = new ComRsrvModel($db2);
+		        $comRsrvModel       = new ComRsrvModel($db2);
 
                 $compSrvModel       = new CompServiceModel($db2);
                 $existingServs       = $compSrvModel->find_whr_brnch( $brn_id);
@@ -503,40 +503,119 @@ class Home extends BaseController
                 $data['slctd_srvz']  = $srv_id;
                 $anExistingServs     = $compSrvModel->find_whr( $srv_id);
 		
-		$data [] = $anExistingServs[0]->srvBio;
+		        $data [] = $anExistingServs[0]->srvBio;
 
                 $st_date             = new Time('now');
-		$st_date->modify('-1 day');
+		        $st_date->modify('-1 day');
 
 
-		#print($st_date);
+		        #print($st_date);
                 $dteEnd              = $anExistingServs[0]->srvLstResDt;
-		#print($dteEnd);	
+		        #print($dteEnd);	
                 $opn_app_list        = [];
                 $dteEnd              = new Time($dteEnd);
 
                 $opn_app_list[] =null ;
                 
 		
-		$date_heads = $compWklySrvDdtModel->find_dst_sdc($srv_id);
+		        $date_heads = $compWklySrvDdtModel->find_dst_sdc($srv_id);
 		
-		$a_counter = 0;
-		foreach( $date_heads as $date_head)
-		{
+		        $a_counter = 0;
+		        foreach( $date_heads as $date_head)
+		        {
 			
-			#print($date_head->wklyDtCrd);exit();
-			$head_as_date_obj  = new Time($date_head->wklyDtCrd);
-			$week_counter = 7;
-			while($week_counter > 0){
-				if($head_as_date_obj >= $st_date)
-					{
-						
-						$data[]       = $head_as_date_obj->format(cCalendar::cmnVrb);}
-				$head_as_date_obj->modify('+1 day'); 
-				$week_counter = $week_counter -1;
-			}
-			$a_counter = $a_counter + 1;
-		}
+			        #print($date_head->wklyDtCrd);exit();
+			        $head_as_date_obj  = new Time($date_head->wklyDtCrd);
+			        $week_counter = 7;
+			        while($week_counter > 0){
+				        if($head_as_date_obj >= $st_date)
+					    {
+                            
+                            $day_id      = $head_as_date_obj->format(cCalendar::cmnVrb);
+                    
+                    $st_date = new Time();
+                    $dteEnd = $anExistingServs[0]->srvLstResDt;
+                
+                # $existingApnts  = $comRsrvModel->find_srv_dt($srv_id, $anExistingServs[0]->srvLstResDt);
+		
+		
+		
+		        $y_day = Time::createFromFormat(cCalendar::cmnVrb, $day_id);
+		        $t_day = Time::createFromFormat(cCalendar::cmnVrb, $day_id);
+		        $y_day->modify('-1 days');
+		        $t_day->modify('+1 days');
+		        $existingApnts      = $comRsrvModel->find_srv_sdt($srv_id,$y_day,$t_day);
+
+		
+
+                               
+
+                $compSrvDtModel     = new CompSrvDdtModel($db2);
+                
+                # $existingApnts      = $compSrvDtModel->find_whr($srv_id);
+		
+
+                
+		
+                
+		        $t_date= Time::createFromFormat(cCalendar::cmnVrb, $day_id);
+                
+		        $theday = strtoupper(($t_date)->format("D"));
+		        if($theday != "SUNDAY")
+		        {
+			        $t_date->modify('next sunday');
+			        $t_date->modify('-7 days');
+		        }
+		        $string_date = $t_date->format('Y-m-d');
+
+		
+		        $existingCompWklySrvDdtModel = $compWklySrvDdtModel->find_whr_sdc(strval($srv_id),$string_date);
+
+		 
+                $calendar = new cCalendar(date('2022-03-01'));
+		        # print($open_days);exit();
+                $f_results = $calendar->get_formated_time($existingCompWklySrvDdtModel , $day_id, $existingApnts, true); #existingServdt 
+		        # print_r($f_results); exit();
+                $formated_list = $f_results[1];
+                $anexisting_list = $f_results[2];
+
+		        $smart_list = $f_results[3];
+                            if(count($smart_list) > 0)
+                            {
+						        $data[]       = $day_id;
+                            }
+                        }
+				            $head_as_date_obj->modify('+1 day'); 
+				            $week_counter = $week_counter -1;
+			        }
+			        $a_counter = $a_counter + 1;
+		        }
+
+
+                //just to check if the day has time ?
+
+                
+                
+                
+                
+                $a_counter          = 0;
+		        $compWklySrvDdtModel = new CompWklySrvDdtModel($db2);
+                $st_date             = new Time();
+                $opn_app_list        = [];
+                $dteEnd              = new Time($dteEnd);
+                
+                while( $st_date < $dteEnd )
+                {
+                    $opn_app_list[]  = $st_date;
+                    $just_holder  = $st_date->format(cCalendar::cmnVrb);
+
+                    $openDaysList[] = $just_holder;
+                    
+                    $st_date->modify('+1 day'); 
+                }
+                #---------------------------------
+                
+
 
             }
 
@@ -547,7 +626,7 @@ class Home extends BaseController
 
                 $db2                = db_connect('frabiedb');
                 $compSrvModel       = new CompServiceModel($db2);
-		$compWklySrvDdtModel = new CompWklySrvDdtModel($db2);
+		        $compWklySrvDdtModel = new CompWklySrvDdtModel($db2);
 
                 $comRsrvModel       = new ComRsrvModel($db2);
 
@@ -571,6 +650,8 @@ class Home extends BaseController
                 
                 $open_days      = $day_id;
 
+                //print($day_id);exit();
+
                 $anExistingServs = $compSrvModel->find_whr($srv_id);
                 $st_date = new Time();
                 $dteEnd = $anExistingServs[0]->srvLstResDt;
@@ -579,11 +660,11 @@ class Home extends BaseController
 		
 		
 		
-		$y_day = Time::createFromFormat(cCalendar::cmnVrb, $day_id);
-		$t_day = Time::createFromFormat(cCalendar::cmnVrb, $day_id);
-		$y_day->modify('-1 days');
-		$t_day->modify('+1 days');
-		$existingApnts      = $comRsrvModel->find_srv_sdt($srv_id,$y_day,$t_day);
+		        $y_day = Time::createFromFormat(cCalendar::cmnVrb, $day_id);
+		        $t_day = Time::createFromFormat(cCalendar::cmnVrb, $day_id);
+		        $y_day->modify('-1 days');
+		        $t_day->modify('+1 days');
+		        $existingApnts      = $comRsrvModel->find_srv_sdt($srv_id,$y_day,$t_day);
 
 		
 
@@ -597,34 +678,34 @@ class Home extends BaseController
                 
 		
 
-		$t_date= Time::createFromFormat(cCalendar::cmnVrb, $day_id);
-		$theday = strtoupper(($t_date)->format("D"));
-		if($theday != "SUNDAY")
-		{
-			$t_date->modify('next sunday');
-			$t_date->modify('-7 days');
-		}
-		$string_date = $t_date->format('Y-m-d');
+		        $t_date= Time::createFromFormat(cCalendar::cmnVrb, $day_id);
+		        $theday = strtoupper(($t_date)->format("D"));
+		        if($theday != "SUNDAY")
+		        {
+			        $t_date->modify('next sunday');
+			        $t_date->modify('-7 days');
+		        }
+		        $string_date = $t_date->format('Y-m-d');
 
 		
-		$existingCompWklySrvDdtModel = $compWklySrvDdtModel->find_whr_sdc(strval($srv_id),$string_date);
+		        $existingCompWklySrvDdtModel = $compWklySrvDdtModel->find_whr_sdc(strval($srv_id),$string_date);
 
 		 
                 $calendar = new cCalendar(date('2022-03-01'));
-		# print($open_days);exit();
+		        # print($open_days);exit();
                 $f_results = $calendar->get_formated_time($existingCompWklySrvDdtModel , $open_days, $existingApnts, true); #existingServdt 
-		# print_r($f_results); exit();
+		        # print_r($f_results); exit();
                 $formated_list = $f_results[1];
                 $anexisting_list = $f_results[2];
 
-		$smart_list = $f_results[3];
+		        $smart_list = $f_results[3];
 
 		
 
                 
 
                 #$data = $formated_list;
-		$data  = $smart_list;
+		        $data  = $smart_list;
 
                 
 
