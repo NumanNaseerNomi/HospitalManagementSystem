@@ -2991,7 +2991,7 @@ class Home extends BaseController
         
 
 	
-
+        $theError = "";
         if($this->request->getMethod() == 'post')
         {
 
@@ -3133,29 +3133,55 @@ class Home extends BaseController
 		
             }
 
-
+            
             if(isset($_POST['save_apnt']))
             {
+                
                 #Array ( [brnch_name] => 4 [serv_name] => 34 
                 # [open_days] => 24th, March 2022 [open_times] => 16:00 
                 # [PatintName] => Faris [save_apnt] => save_apnt )
-                #print_r($_POST);
-                #exit();
+                
                 #$_SESSION['logedinid']
                 #$customer = $a_comp_acc_model->find_by_phone($_POST[$aPhn]);
-                $adatetime = Time::createFromFormat(cCalendar::cmnVrb, $_POST['open_days']);
-                $adatetime->setTime(0, 0, 0);
-                $tim_pck = $_POST['open_times'];
-                $pos1  = strpos($tim_pck,":",0); 
-                $part1 = substr($tim_pck,0, $pos1);
-                $part2 = substr($tim_pck,$pos1+1 );
-                $adatetime->add(new \DateInterval('PT' . $part1 . 'H'));
-                $adatetime->add(new \DateInterval('PT' . $part2 . 'M'));
+                #Array ( [brnch_name] => 1 [dep_name] => 1 [serv_name] => 75 [open_days] => [PatintName] => AboFaisal [save_apnt] => save_apnt )
+                
+                $theError = "Please ensure to provide all input";
+                if(isset($_POST['brnch_name']) && isset($_POST['dep_name'])
+                    && isset($_POST['serv_name']) && isset($_POST['open_days'])
+                    && isset($_POST['open_times']) && isset($_POST['PatintName']))
+                {
+                
 
-                $aCustResDt = $adatetime->format('Y-m-d H:i:s');
+                    if($_POST['brnch_name'] == ''
+                    || $_POST['dep_name'] == ''
+                    || $_POST['serv_name'] == ''
+                    || $_POST['open_days'] == ''
+                    || $_POST['open_times'] == ''
+                    || $_POST['PatintName'] == '') 
+                    {
+                        //do something
+                        
+                    }
+                    else 
+                    {
+                        $theError = "";
+                        #print_r($_POST);exit();
+                
+                        $adatetime = Time::createFromFormat(cCalendar::cmnVrb, $_POST['open_days']);
+                        $adatetime->setTime(0, 0, 0);
+                        $tim_pck = $_POST['open_times'];
+                        $pos1  = strpos($tim_pck,":",0); 
+                        $part1 = substr($tim_pck,0, $pos1);
+                        $part2 = substr($tim_pck,$pos1+1 );
+                        $adatetime->add(new \DateInterval('PT' . $part1 . 'H'));
+                        $adatetime->add(new \DateInterval('PT' . $part2 . 'M'));
 
-                $comRsrvModel->insert_record($existingData['compId'], $_SESSION['logedinid'], $_POST['PatintName'], $_POST['serv_name'], $aCustResDt, 0);
-		        return redirect()->to(base_url('/home/org_public_web/frabi/appointments'));
+                        $aCustResDt = $adatetime->format('Y-m-d H:i:s');
+
+                        $comRsrvModel->insert_record($existingData['compId'], $_SESSION['logedinid'], $_POST['PatintName'], $_POST['serv_name'], $aCustResDt, 0);
+		                return redirect()->to(base_url('/home/org_public_web/frabi/appointments'));
+                    }
+                }
 
             }
             
@@ -3164,7 +3190,7 @@ class Home extends BaseController
         
 
 	
-        $data ['compPublicName'] = '';
+    $data ['compPublicName'] = '';
 	$data ['compUrlShortName'] = '';
 	$data ['compWhoRwe'] = '';
 
@@ -3278,9 +3304,9 @@ class Home extends BaseController
 		$start_at = $total_ahead - 9;
 	}
 	
-	#print($total_ahead);print($total_count);exit();
+	    #print($total_ahead);print($total_count);exit();
 	
-	#print_r($existingServs);exit();
+	    #print_r($existingServs);exit();
 
         # [brnch_name] => 4 [serv_name] => 34 [open_days] => 16th, March 2022 [list_open_days] => list_open_days
         if(isset($_POST['brnch_name']))
@@ -3292,16 +3318,18 @@ class Home extends BaseController
             $data['slctd_srvz']=$_POST['serv_name'];
         }
         
-	#print_r($listErrors);	
+	    #print_r($listErrors);	
 
 	
-	$data['exUsrData']   = $exUsrData;
-    $data['isCollapsed'] = "sidebar js-sidebar";        
-    $data['existingRss'] = $existingRss;
-    $data['existingAts'] = $existingAts;
-	$data['th_srv_nm']   = $th_srv_nm;
-	$data['start_at']    = $start_at;
-    $data['colors']      = (new CompColorsModel($db2))->find_whr($existingData['compId']);        
+	    $data['exUsrData']   = $exUsrData;
+        $data['isCollapsed'] = "sidebar js-sidebar";        
+        $data['existingRss'] = $existingRss;
+        $data['existingAts'] = $existingAts;
+	    $data['th_srv_nm']   = $th_srv_nm;
+	    $data['start_at']    = $start_at;
+        $data['colors']      = (new CompColorsModel($db2))->find_whr($existingData['compId']);        
+        
+        $data['theError']   = $theError;
 
         echo view ('public_header', $data);
         echo view ('org_public_view', $data);

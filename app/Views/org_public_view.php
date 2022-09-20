@@ -51,7 +51,7 @@
      <!--  -->
     <nav class="navtop">
          
-         <form method="post">
+         <form method="POST">
           </br>
           <div class="container-fluid">
           <div class="row">
@@ -141,6 +141,13 @@
                                                                                                                         echo "";
                                                                                                                    } ?>"> 
           </div></div>
+          
+          <div><p style="color:red;"><?php echo $theError; ?> </p></div>
+
+          
+
+          
+
 
 
           <div class="row">
