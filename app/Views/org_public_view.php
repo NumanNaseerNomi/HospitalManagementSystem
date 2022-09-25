@@ -229,14 +229,29 @@
      <!--button type="type" id="btn-click">Click Me</button-->
      
 
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
      <script>
    
+                  
+
    $(document).ready(function(){
+
+     
+     
+
+     
+           
+     
+     
 
      //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv by fares
      
      function loader(item){
+        
+
           $(item).show();
           const innerHTML = '  <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"'
                          + 'width="20px" height="20px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">'
@@ -245,6 +260,8 @@
                     +'</path></svg>';
           
           $(item).html(innerHTML);
+
+          
      }
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ by fares
@@ -648,6 +665,28 @@ else
 
 
 <?php if ($page_link == 'appointments') :?>
+
+     <!-- 
+
+     
+
+     -->
+
+     <!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">My Appointments</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Attended Appointments</button>
+</div>
+
+
+
+
+
+<!-- Tab content -->
+<div id="London" class="tabcontent">
+
+
+
      <div class="container-fluid p-0">
 
 					<h1 class="h3 mb-3"><strong>Account Data</strong> </h1>
@@ -864,6 +903,14 @@ else
 
 				</div>
 <?php endif; ?>
+
+</div>
+
+<div id="Paris" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p>
+</div>
+
 
 
 
