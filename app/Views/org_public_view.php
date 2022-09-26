@@ -689,7 +689,7 @@ else
 
      <div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Account Data</strong> </h1>
+					
 
 					
 					<div class="row">
@@ -698,14 +698,14 @@ else
 
 							<div class="card flex-fill w-100">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Data Table</h5>
+									
 								</div>
 								<form method="post">
 								<div class="card-body px-4">
 									<!------------------Accounts Data Table --------------------->
 
-										<?php if (count($existingRss) > 0):?>
-										<h4>Reservations Data</h4>
+										<?php if (count($existingRssUp) > 0):?>
+										
 										<table class="table table-striped">
 										<thead>
 											<tr>
@@ -725,11 +725,233 @@ else
 										
 										$new_count_chk = 0;
 										
-										for ($x = count($existingRss)-1; $x > -1 && $new_count_chk < 10; $x--) {
+										for ($x = count($existingRssUp)-1; $x > -1 && $new_count_chk < 10; $x--) {
 											$new_count_chk = $new_count_chk + 1;
   											# echo count($existingRss);
 											
-											$res = (object) $existingRss[$x];
+											$res = (object) $existingRssUp[$x];
+											
+											#}
+											#foreach($existingRss as $res) {
+											#if($start_at > 0 && $row_checker < $start_at)
+											#{
+											#	$row_checker = $row_checker + 1;
+											#	continue;
+											#}	
+										?>
+											<tr>
+											<th scope="row"><?php echo $row_counter; ?></th>
+											<?php
+											$titleName = $row_counter;
+											$hNam = "hn".$row_counter;
+      										$vNam = "vn".$row_counter;
+											$sNam = "sn".$row_counter;
+      										$dNam = "dn".$row_counter;
+											$aNam = "an".$row_counter;
+      										#$aLan = "l".$row_counter;
+											?>
+
+											
+											
+											<td><div class="form-group">
+											
+											<label ><?php echo $res->vstrNam; ?></label>
+											
+
+											</div></td>
+											
+											<td><div class="form-group">
+											
+											<label><?php echo $th_srv_nm[$res->compSrvKey];  ?></label>
+											
+											</div></td> 
+
+											
+
+											<td><div class="form-group">
+											<label > <?php echo  $res->custResDt; ?></label>											</div></td> 
+
+											
+											
+											
+											
+											<td>
+												<?php  $c_time = date('Y-m-d'); # echo $c_time; ?> 
+												<?php  $r_time = date('Y-m-d',strtotime($res->custResDt));  # echo $r_time; ?> 
+												
+												<button type="submit" class="btn btn-danger" name="delete_res" value="<?php echo $res->custResID?>"  <?php if($r_time <= $c_time) {echo "disabled";} ?>>Delete</button>
+											</td>
+											</tr>
+											<?php if ($res->custResAttended == 1 && $res->custResEval < 1) { ?>
+											<tr>
+											<td></td>
+
+											<td>
+											<div class="wrapper">
+											<div class="star-rating"> 
+      											<input type="radio" name="stars<?php echo $row_counter?>" id="star<?php echo $row_counter?>-a" value="5" <?php if($res->custResEval == 5){echo "checked=\"checked\"";}?> />
+      											<label for="star<?php echo $row_counter?>-a"></label>
+      											<input type="radio" name="stars<?php echo $row_counter?>" id="star<?php echo $row_counter?>-b" value="4" <?php if($res->custResEval == 4){echo "checked=\"checked\"";}?> />
+      											<label for="star<?php echo $row_counter?>-b"></label>
+      											<input type="radio" name="stars<?php echo $row_counter?>" id="star<?php echo $row_counter?>-c" value="3" <?php if($res->custResEval == 3){echo "checked=\"checked\"";}?> />
+     											<label for="star<?php echo $row_counter?>-c"></label>
+     											<input type="radio" name="stars<?php echo $row_counter?>" id="star<?php echo $row_counter?>-d" value="2" <?php if($res->custResEval == 2){echo "checked=\"checked\"";}?> />
+      											<label for="star<?php echo $row_counter?>-d"></label>
+      											<input type="radio" name="stars<?php echo $row_counter?>" id="star<?php echo $row_counter?>-e" value="1" <?php if($res->custResEval == 1){echo "checked=\"checked\"";}?> />
+      											<label for="star<?php echo $row_counter?>-e"></label>
+											</div>
+											</td>
+											<td colspan="2">
+												<input type="text" class="form-control" name="ratngCmnt<?php echo $row_counter?>" placeholder="" value="<?php echo $res->custResCmnt; ?>">
+											</td> 
+											<td><button type="submit" class="btn btn-primary" name="rate_res" value="<?php echo $titleName . "." . $res->custResID;?>" <?php if($res->custResAttended == 0){echo "disabled";}?>>Rate</button></td>
+											</tr> <?php } ?>
+										<?php $row_counter =  $row_counter +1;} ?>
+										</tbody>
+										</table>
+										<?php endif; ?>	
+									
+								</div>
+
+
+
+
+
+								<div class="card-body px-4">
+									<!------------------Accounts Data Table --------------------->
+
+										<?php if (FALSE): # count($existingAts) > 0?>
+										<h4>Attchment Data</h4>
+										<table class="table table-striped">
+										<thead>
+											
+											<tr>
+											<th scope="col">#</th>
+											<th scope="col">Hospital</th>
+											<th scope="col">Name</th>
+											
+											<th scope="col">Size</th>
+											<th scope="col">Status</th>
+											
+											<th colspan="2" scope="col">Actions</th>
+											</tr>
+											
+										</thead>
+										<tbody>
+										<?php 
+										$row_counter = 1;
+										foreach($existingAts as $ats) {
+										
+											$titleName = $row_counter;
+											$hNam = "hn".$row_counter;
+      										$aNam = "an".$row_counter;
+											$sNam = "sn".$row_counter;
+      										$tNam = "tn".$row_counter;
+											
+											$uNam = "un".$row_counter;
+      										
+											?>
+											
+											<tr>
+											<th scope="row"><?php echo $row_counter; ?></th>
+											
+
+											<td><div class="form-group">
+											<input type="text" class="form-control" name="<?php echo $hNam?>" placeholder="" value="<?php echo $ats->compKey; ?>">
+											</div></td>
+											
+											<td><div class="form-group">
+											<input type="text" class="form-control" name="<?php echo $aNam?>" placeholder="" value="<?php echo $ats->attchName; ?>">
+											</div></td>
+											
+											<td><div class="form-group">
+											<input type="text" class="form-control" name="<?php echo $sNam?>" placeholder="" value="<?php echo $ats->attchSize; ?>">
+											</div></td> 
+
+											
+
+											<td><div class="form-group">
+											<input type="text" class="form-control" name="<?php echo $tNam?>" placeholder="" value="<?php echo $ats->attchSntStat; ?>">
+											</div></td> 
+
+											
+											
+
+											<td><button type="submit" class="btn btn-primary" name="delete_ats" value="<?php echo $titleName?>">Delete</button></td>
+											</tr>
+											<tr>
+											<td></td>
+											<td alt="rtl"><strong>Summary</strong></td>
+											<td colspan="4"><div class="form-group">
+											<input type="text" class="form-control" name="<?php echo $uNam?>" placeholder="" value="<?php echo $ats->attchSmary; ?>">
+											</div></td> 
+											</tr>
+										<?php $row_counter =  $row_counter +1;} ?>
+										</tbody>
+										</table>
+										<?php endif; ?>	
+									
+								</div>
+							</div>
+						</div>
+
+
+						
+					</div>
+
+					
+
+				</div>
+<?php # endif; ?>
+
+</div>
+
+<div id="Paris" class="tabcontent">
+  
+
+<div class="container-fluid p-0">
+
+					
+
+					
+					<div class="row">
+						
+						<div class="col-12 col-md-12 col-xxl-8 d-flex order-3 order-xxl-2">
+
+							<div class="card flex-fill w-100">
+								<div class="card-header">
+									
+								</div>
+								<form method="post">
+								<div class="card-body px-4">
+									<!------------------Accounts Data Table --------------------->
+
+										<?php if (count($existingRssPr) > 0):?>
+										
+										<table class="table table-striped">
+										<thead>
+											<tr>
+											<th scope="col" WIDTH="1%">#</th>
+											
+											<th scope="col" WIDTH="19%">Visitor</th>
+											<th scope="col" WIDTH="60%">Service</th>
+											<th scope="col" WIDTH="20%">Date & Time</th>
+											
+											<th scope="col" >Actions</th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php 
+										$row_counter = 1;
+										$row_checker = 1;
+										
+										$new_count_chk = 0;
+										
+										for ($x = count($existingRssPr)-1; $x > -1 && $new_count_chk < 10; $x--) {
+											$new_count_chk = $new_count_chk + 1;
+  											# echo count($existingRss);
+											
+											$res = (object) $existingRssPr[$x];
 											
 											#}
 											#foreach($existingRss as $res) {
@@ -904,11 +1126,8 @@ else
 				</div>
 <?php endif; ?>
 
-</div>
 
-<div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p>
+
 </div>
 
 

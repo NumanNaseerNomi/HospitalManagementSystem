@@ -27,10 +27,31 @@ class ComRsrvModel
         $builder = $this->db->table('compcustres');
         $records = $builder
                     ->where(['compAccKey' => $acompAccKey])
-		    ->where(['custResAttended > ' => '-1'])
-
+		            ->where(['custResAttended > ' => '-1'])
                     ->get()->getResult();
                     
+        return $records;    
+    }
+
+    function find_cust_upcoming($acompAccKey, $y_day)
+    {
+        $builder = $this->db->table('compcustres');
+        $records = $builder
+                    ->where(['compAccKey' => $acompAccKey])
+		            ->where(['custResAttended > ' => '-1'])
+                    ->where(['custResDt > ' => $y_day])
+                    ->get()->getResult();          
+        return $records;    
+    }
+
+    function find_cust_previous($acompAccKey, $t_day)
+    {
+        $builder = $this->db->table('compcustres');
+        $records = $builder
+                    ->where(['compAccKey' => $acompAccKey])
+		            ->where(['custResAttended > ' => '-1'])
+                    ->where(['custResDt < ' => $t_day])
+                    ->get()->getResult();          
         return $records;    
     }
 

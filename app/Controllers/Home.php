@@ -776,18 +776,20 @@ class Home extends BaseController
            
         $db2 = db_connect('frabiedb');
         $compServiceModel = new CompServiceModel($db2);
-	$compWklySrvDdtModel = new CompWklySrvDdtModel($db2);
+	    $compWklySrvDdtModel = new CompWklySrvDdtModel($db2);
         $comRsrvModel = new ComRsrvModel($db2);
-	$compSrvDdtModel = new CompSrvDdtModel($db2);
+	    $compSrvDdtModel = new CompSrvDdtModel($db2);
 
         $existingSvs = [];
-	$nextWeeks = [];
+	    $nextWeeks = [];
         $opening[] = [];
         if(strlen($compId) > 0)
         {
             $genInfoModel = new GenInfoModel();
             $existingData = $genInfoModel->where('compUrlShortName', $compId)->first();
             $existingSvs = $compServiceModel->find_all_servs( $existingData['compId']);
+            
+            #print_r($existingSvs);exit();
             $tDate = new Time();
 	    
 	    $theday = strtoupper(($tDate)->format("D"));
@@ -1026,6 +1028,10 @@ class Home extends BaseController
             $existingData       = $genInfoModel->where('compUrlShortName', $compId)->first();
             $existingDtdt       = $compDdtModel->find_whr( $existingData['compId']);
             $existingServs      = $compSrvModel->join_records( $existingData['compId']);
+            
+            #print_r($existingServs );exit();#existingSvs
+            
+            #$existingServs = $compSrvModel->find_all_servs( $existingData['compId']);
             $existingServsBrnch = $comBranchModel->find_whr( $existingData['compId']);
             $exstngSrvsDprtmnts = $comDprtmntModel->find_whr( $existingData['compId']);
         }   
@@ -1121,6 +1127,7 @@ class Home extends BaseController
         {
             $existingDtdt = $compDdtModel->find_whr( $existingData['compId']);
             $existingServs = $compSrvModel->join_records( $existingData['compId']);
+            #$existingServs = $compSrvModel->find_all_servs( $existingData['compId']);
         }
 
         $data['existingDtdt']           = $existingDtdt;
@@ -1221,14 +1228,14 @@ class Home extends BaseController
             return redirect()->to(base_url('/home/sign_in'));
             
         $db2 = db_connect('frabiedb');
-	$comRsrvModel = new ComRsrvModel($db2);
-	$existingData = [] ;
-	$existingRss = [];
+	    $comRsrvModel = new ComRsrvModel($db2);
+	    $existingData = [];
+	    $existingRss  = [];
         if(strlen($compId) > 0)
         {
             $genInfoModel       = new GenInfoModel();
             $existingData       = $genInfoModel->where('compUrlShortName', $compId)->first();
-            $existingRss= $comRsrvModel->find_whr_comp($existingData['compId']);
+            $existingRss        = $comRsrvModel->find_whr_comp($existingData['compId']);
         }   
 	
 	
@@ -2906,16 +2913,16 @@ class Home extends BaseController
     {
         
         # session_start();
-	$autoload['helper'] = array('url','html','form','file');
-	$listErrors = [];
-	$data = [];
+	    $autoload['helper'] = array('url','html','form','file');
+	    $listErrors = [];
+	    $data = [];
 
         $genInfoModel       = new GenInfoModel();
 
         $existingData       = $genInfoModel->where('compUrlShortName', $compId)->first();
 
         $db2                = db_connect('frabiedb');
-	$compAccModel       = new CompAccModel($db2);
+	    $compAccModel       = new CompAccModel($db2);
         $comPagesModel      = new ComPagesModel($db2);
         $comAdsModel        = new ComAdsModel($db2);
         $existingPages      = $comPagesModel->find_whr( $existingData['compId']);
@@ -2928,12 +2935,12 @@ class Home extends BaseController
         $comRsrvModel       = new ComRsrvModel($db2);
         $a_comp_acc_model   = new CompAccModel($db2);
 
-	$comAttchModel = new ComAttchModel($db2);
+	    $comAttchModel      = new ComAttchModel($db2);
 
-	$compServiceModel = new CompServiceModel($db2);
+	    $compServiceModel   = new CompServiceModel($db2);
         
         
-        $existingServsBrnch = $comBranchModel->find_whr( $existingData['compId']);
+        $existingServsBrnch  = $comBranchModel->find_whr( $existingData['compId']);
         $department_records  = [];
         $existingServs       = $compSrvModel->find_all_servs( $existingData['compId']);
 
@@ -2954,35 +2961,40 @@ class Home extends BaseController
 
         $open_times         = '';
 
-	$existingRss = [];
+	    $existingRss = [];
         $existingAts = [];
-	$exUsrData = []; 
+	    $exUsrData = []; 
 
 
 	
-	if(isset($_SESSION['logedinid']))
-	{
+	    if(isset($_SESSION['logedinid']))
+	    {
         	$existingRss = $comRsrvModel->find_cust( $_SESSION['logedinid']);
+            $y_day = new Time();
+            $y_day->modify('-1 days');
+            $t_day = new Time();
+            $existingRssUp = $comRsrvModel->find_cust_upcoming($_SESSION['logedinid'], $y_day);
+            $existingRssPr = $comRsrvModel->find_cust_previous($_SESSION['logedinid'], $t_day);
         	$existingAts = $comAttchModel->find_whr( $_SESSION['logedinid']);
-		$exUsrData   = $compAccModel->find_by_accId($_SESSION['logedinid']);
-		$exUsrData   = $exUsrData[0];
-	}
+		    $exUsrData   = $compAccModel->find_by_accId($_SESSION['logedinid']);
+		    $exUsrData   = $exUsrData[0];
+	    }
 
-	$th_srv_nm = [];
-	foreach( $existingRss as $an_ex_srv )
-	{
+	    $th_srv_nm = [];
+	    foreach( $existingRss as $an_ex_srv )
+	    {
 		
-		$ful_srv_rec = $compServiceModel->find_whr($an_ex_srv->compSrvKey);
-		if(count($ful_srv_rec)>0)
-		{
-			$th_srv_nm[$an_ex_srv->compSrvKey] = $ful_srv_rec[0]->srvName;
-			#print_r($ful_srv_rec);exit();
-		}
-		else
-		{
-			$th_srv_nm[$an_ex_srv->compSrvKey] = "service is deleted!";
-		}
-	}
+		    $ful_srv_rec = $compServiceModel->find_whr($an_ex_srv->compSrvKey);
+		    if(count($ful_srv_rec)>0)
+		    {
+			    $th_srv_nm[$an_ex_srv->compSrvKey] = $ful_srv_rec[0]->srvName;
+			    #print_r($ful_srv_rec);exit();
+		    }
+		    else
+		    {
+		    	$th_srv_nm[$an_ex_srv->compSrvKey] = "service is deleted!";
+		    }
+	    }
 
 
 
@@ -2997,42 +3009,42 @@ class Home extends BaseController
 
 	    $res_record_id = -1;
 	    if(isset($_POST['rate_res']))
-            {
-                # print_r($_POST);exit();
-		$res_record_id = substr($_POST['rate_res'], strpos($_POST['rate_res'],".")+1);
-		$the_index     = substr($_POST['rate_res'], 0, strpos($_POST['rate_res'],"."));
-		#print($res_record_id);
-		#print($the_index);exit();
-		$starName = "stars".$the_index ;
-		$cmntName = "ratngCmnt".$the_index;
-		#print($_POST['rate_res']);
-		#print($res_record_id);
-		#exit();
+        {
+            # print_r($_POST);exit();
+		    $res_record_id = substr($_POST['rate_res'], strpos($_POST['rate_res'],".")+1);
+		    $the_index     = substr($_POST['rate_res'], 0, strpos($_POST['rate_res'],"."));
+		    #print($res_record_id);
+		    #print($the_index);exit();
+		    $starName = "stars".$the_index ;
+		    $cmntName = "ratngCmnt".$the_index;
+		    #print($_POST['rate_res']);
+		    #print($res_record_id);
+		    #exit();
 		
-		$comRsrvModel->update_rating($_POST[$starName], $_POST[$cmntName], $res_record_id);
+		    $comRsrvModel->update_rating($_POST[$starName], $_POST[$cmntName], $res_record_id);
 
-                $existingRss = $comRsrvModel->find_cust( $_SESSION['logedinid']);
+            $existingRssPr = $comRsrvModel->find_cust( $_SESSION['logedinid']);
 
-            }
+        }
 
-            if(isset($_POST['delete_res']))
+        if(isset($_POST['delete_res']))
+        {
+            #$res_record_id = $existingRss[$_POST['delete_res']-1]->custResID;
+            #if($res_record_id > -1)
+            #{
+            $comRsrvModel->delete_record($_POST['delete_res']);
+            $existingRssUp = $comRsrvModel->find_cust( $_SESSION['logedinid']);
+            #}
+        }
+        if(isset($_POST['delete_ats']))
+        {
+            $res_record_id = $existingAts[$_POST['delete_ats']-1]->attchId;
+            if($res_record_id > -1)
             {
-                #$res_record_id = $existingRss[$_POST['delete_res']-1]->custResID;
-                #if($res_record_id > -1)
-                #{
-                    $comRsrvModel->delete_record($_POST['delete_res']);
-                    $existingRss = $comRsrvModel->find_cust( $_SESSION['logedinid']);
-                #}
+                $comAttchModel->delete_record($res_record_id);
+                $existingAts = $comAttchModel->find_whr( $_SESSION['logedinid']);
             }
-            if(isset($_POST['delete_ats']))
-            {
-                $res_record_id = $existingAts[$_POST['delete_ats']-1]->attchId;
-                if($res_record_id > -1)
-                {
-                    $comAttchModel->delete_record($res_record_id);
-                    $existingAts = $comAttchModel->find_whr( $_SESSION['logedinid']);
-                }
-            }
+        }
 
 	    $rules = [];
 	     
@@ -3041,14 +3053,14 @@ class Home extends BaseController
 
 		
 
-		$acName= $_POST['acName'];
-		$acPhone= $_POST['acPhone'];
-		$acEmail= $_POST['acEmail']; 
+		    $acName= $_POST['acName'];
+		    $acPhone= $_POST['acPhone'];
+		    $acEmail= $_POST['acEmail']; 
 		
-                $acSec= $_POST['acSec'];
+            $acSec= $_POST['acSec'];
   
                 
-                $rules = [
+            $rules = [
                     
 		    'acName' => [
                         'rules' => 'required|min_length[3]|alpha',
@@ -3092,37 +3104,37 @@ class Home extends BaseController
 	    }
 	    
 	    if(isset($_POST['add_account']))
-            {
+        {
                 //print_r($_POST);
 		//exit();
 
 		
 
-                if($this->validate($rules))
-                {
-			$reserved_phone = $compAccModel->find_by_phone($_POST['acPhone']);
-			if(count($reserved_phone) < 1) 
-			{
-                		$compAccModel->insert_record($existingData['compId'], '3', $_POST['acName'], $_POST['acPhone'], $_POST['acEmail'], crypt(md5($_POST['acSec']),"st123"), $_POST['Prf_lng']);
-				return redirect()->to(base_url('/home/sign_in/pp'));
-			}
-			else
-			{
-				$listErrors[] = "The phone number is already registered!";
+            if($this->validate($rules))
+            {
+			    $reserved_phone = $compAccModel->find_by_phone($_POST['acPhone']);
+			    if(count($reserved_phone) < 1) 
+			    {
+                	$compAccModel->insert_record($existingData['compId'], '3', $_POST['acName'], $_POST['acPhone'], $_POST['acEmail'], crypt(md5($_POST['acSec']),"st123"), $_POST['Prf_lng']);
+				    return redirect()->to(base_url('/home/sign_in/pp'));
+			    }
+			    else
+			    {
+				    $listErrors[] = "The phone number is already registered!";
 				
-			}
-		}
-		else
-		{
-                   $data['validation'] = $this->validator; 
-                }
-		
+			    }
+		    }
+		    else
+		    {
+                $data['validation'] = $this->validator; 
             }
+		
+        }
 		
 	    
 	    
 	    if(isset($_POST['cng_account']))
-            {
+        {
                 #print_r($_POST);
 		#print();
 		#exit();
@@ -3131,11 +3143,11 @@ class Home extends BaseController
 
                 $compAccModel->update_record('3', $_POST['acName'], $_POST['acPhone'], $_POST['acEmail'], crypt(md5($_POST['acSec']),"st123"), $_POST['Prf_lng'], $_SESSION['logedinid']);
 		
-            }
+        }
 
             
-            if(isset($_POST['save_apnt']))
-            {
+        if(isset($_POST['save_apnt']))
+        {
                 
                 #Array ( [brnch_name] => 4 [serv_name] => 34 
                 # [open_days] => 24th, March 2022 [open_times] => 16:00 
@@ -3145,14 +3157,14 @@ class Home extends BaseController
                 #$customer = $a_comp_acc_model->find_by_phone($_POST[$aPhn]);
                 #Array ( [brnch_name] => 1 [dep_name] => 1 [serv_name] => 75 [open_days] => [PatintName] => AboFaisal [save_apnt] => save_apnt )
                 
-                $theError = "Please ensure to provide all input";
-                if(isset($_POST['brnch_name']) && isset($_POST['dep_name'])
-                    && isset($_POST['serv_name']) && isset($_POST['open_days'])
-                    && isset($_POST['open_times']) && isset($_POST['PatintName']))
-                {
+            $theError = "Please ensure to provide all input";
+            if(isset($_POST['brnch_name']) && isset($_POST['dep_name'])
+                && isset($_POST['serv_name']) && isset($_POST['open_days'])
+                && isset($_POST['open_times']) && isset($_POST['PatintName']))
+            {
                 
 
-                    if($_POST['brnch_name'] == ''
+                if($_POST['brnch_name'] == ''
                     || $_POST['dep_name'] == ''
                     || $_POST['serv_name'] == ''
                     || $_POST['open_days'] == ''
@@ -3190,44 +3202,44 @@ class Home extends BaseController
         
 
 	
-    $data ['compPublicName'] = '';
-	$data ['compUrlShortName'] = '';
-	$data ['compWhoRwe'] = '';
+        $data ['compPublicName'] = '';
+	    $data ['compUrlShortName'] = '';
+	    $data ['compWhoRwe'] = '';
 
-	$data ['compWorkingHrs'] = '';
-	$data ['compLocation'] = '';
-	$data ['compPhoNumb'] = '';
+	    $data ['compWorkingHrs'] = '';
+	    $data ['compLocation'] = '';
+	    $data ['compPhoNumb'] = '';
 
-	$data ['compWtzNumb'] = '';
-	$data ['compEmail'] = '';
-	$data ['compLogo'] = '';
+	    $data ['compWtzNumb'] = '';
+	    $data ['compEmail'] = '';
+	    $data ['compLogo'] = '';
 
-	$data ['twitter_acc'] = '';
-	$data ['instgram_acc'] = '';
-	$data ['snap_acc'] = '';
+	    $data ['twitter_acc'] = '';
+	    $data ['instgram_acc'] = '';
+	    $data ['snap_acc'] = '';
 
-	$data ['pages'] = [];
-	$data ['ads'] = [];
-	$data ['slctd_brnch'] = '';
+	    $data ['pages'] = [];
+	    $data ['ads'] = [];
+	    $data ['slctd_brnch'] = '';
 
-	$data ['slctd_dprtz'] = '';
-	$data ['slctd_srvz'] = '';
+	    $data ['slctd_dprtz'] = '';
+	    $data ['slctd_srvz'] = '';
 
-	$data ['page_link'] = $page_link;
-	$data ['to_page'] = $to_page;
-	$data ['existingServsBrnch'] = $existingServsBrnch;
+	    $data ['page_link'] = $page_link;
+	    $data ['to_page'] = $to_page;
+	    $data ['existingServsBrnch'] = $existingServsBrnch;
 
-	$data ['department_records'] = $department_records;
-	$data ['existingServs'] = $existingServs;
-	$data ['ftime_list'] = $formated_list;
+	    $data ['department_records'] = $department_records;
+	    $data ['existingServs'] = $existingServs;
+	    $data ['ftime_list'] = $formated_list;
 
-	$data ['ftime_list_dic'] = $formated_list_dic;
-	$data ['srvs_bio'] = $srvs_bio;
-	$data ['listErrors'] = $listErrors;
+	    $data ['ftime_list_dic'] = $formated_list_dic;
+	    $data ['srvs_bio'] = $srvs_bio;
+	    $data ['listErrors'] = $listErrors;
 
-	$data ['openDaysList'] = [];
-	$data ['open_days'] = '';
-	$data ['open_times'] = '';
+	    $data ['openDaysList'] = [];
+	    $data ['open_days'] = '';
+	    $data ['open_times'] = '';
 
 	
 
@@ -3253,26 +3265,26 @@ class Home extends BaseController
 
              
             $data ['compPublicName'] = $existingData['compPublicName'];
-	    $data ['compUrlShortName'] = $existingData['compUrlShortName'];
-	    $data ['compWhoRwe'] = $existingData['compWhoRwe'];
+	        $data ['compUrlShortName'] = $existingData['compUrlShortName'];
+	        $data ['compWhoRwe'] = $existingData['compWhoRwe'];
 
-	    $data ['compWorkingHrs'] = $existingData['compWorkingHrs'];
-	    $data ['compLocation'] = $existingData['compLocation'];
-	    $data ['compPhoNumb'] = $existingData['compPhoNumb'];
+	        $data ['compWorkingHrs'] = $existingData['compWorkingHrs'];
+	        $data ['compLocation'] = $existingData['compLocation'];
+	        $data ['compPhoNumb'] = $existingData['compPhoNumb'];
 
-	    $data ['compWtzNumb'] = $existingData['compWtzNumb'];
-	    $data ['compEmail'] = $existingData['compEmail'];
-	    $data ['compLogo'] = $existingData['compLogo'];
+	        $data ['compWtzNumb'] = $existingData['compWtzNumb'];
+	        $data ['compEmail'] = $existingData['compEmail'];
+	        $data ['compLogo'] = $existingData['compLogo'];
 
-	    $data ['twitter_acc'] = $atwitter;
-	    $data ['instgram_acc'] = $insta;
-	    $data ['snap_acc'] = $snap;
+	        $data ['twitter_acc'] = $atwitter;
+	        $data ['instgram_acc'] = $insta;
+	        $data ['snap_acc'] = $snap;
 
-	    $data ['pages'] = $existingPages;
-	    $data ['ads'] = $existingAds;
-	    $data ['slctd_brnch'] = '';
-	    $data ['slctd_dprtz'] = '';
-	    $data ['slctd_srvz'] = '';
+	        $data ['pages'] = $existingPages;
+	        $data ['ads'] = $existingAds;
+	        $data ['slctd_brnch'] = '';
+	        $data ['slctd_dprtz'] = '';
+	        $data ['slctd_srvz'] = '';
 
 
 
@@ -3281,28 +3293,28 @@ class Home extends BaseController
 
 		
 
-	$c_time = date('Y-m-d');
+	    $c_time = date('Y-m-d');
 	
-	$total_count = 0;
-	$total_ahead = 0;
-	$start_at    = 0;
-	foreach($existingRss as $an_ex_srv){
-		$r_time = date('Y-m-d',strtotime($an_ex_srv->custResDt));
+	    $total_count = 0;
+	    $total_ahead = 0;
+	    $start_at    = 0;
+	    foreach($existingRss as $an_ex_srv){
+		    $r_time = date('Y-m-d',strtotime($an_ex_srv->custResDt));
 		
-		if($r_time <= $c_time)
-		{
-			$total_ahead = $total_ahead + 1;
-		}
-		else{
-			$total_count = $total_count + 1;
-		}
+		    if($r_time <= $c_time)
+		    {
+			    $total_ahead = $total_ahead + 1;
+		    }
+		    else{
+			    $total_count = $total_count + 1;
+		    }
 		
-	}
+	    }
 	
-	if($total_ahead > 10)
-	{
-		$start_at = $total_ahead - 9;
-	}
+	    if($total_ahead > 10)
+	    {
+		    $start_at = $total_ahead - 9;
+	    }
 	
 	    #print($total_ahead);print($total_count);exit();
 	
@@ -3324,6 +3336,8 @@ class Home extends BaseController
 	    $data['exUsrData']   = $exUsrData;
         $data['isCollapsed'] = "sidebar js-sidebar";        
         $data['existingRss'] = $existingRss;
+        $data['existingRssUp'] = $existingRssUp;
+        $data['existingRssPr'] = $existingRssPr;
         $data['existingAts'] = $existingAts;
 	    $data['th_srv_nm']   = $th_srv_nm;
 	    $data['start_at']    = $start_at;
